@@ -32,4 +32,18 @@ class DataLoader:
             'consumo_medio_f2': f"{np.round(self.df[((self.df['hour'] >= 7) & (self.df['hour'] < 8)) | ((self.df['hour'] >= 19) & (self.df['hour'] < 23))]['consumo_kWh'].mean(), 4)} kWh",
             'consumo_medio_f1': f"{np.round(self.df[(self.df['hour'] >= 8) & (self.df['hour'] < 19)]['consumo_kWh'].mean(), 4)} kWh"
         }
+        
         return stats
+    
+    def detect_patterns(self):
+        """Identifica pattern nei consumi"""
+        consumo_medio_per_fascia = self.df.groupby('time_slot')['consumo_kWh'].mean()
+        patterns = {
+            "fascia_oraria_piu_costosa": consumo_medio_per_fascia.idxmax(),
+            "ora_di_picco_massimo": self.df.loc[self.df['consumo_kWh'].idxmax()],
+            "ora_di_picco_minimo": self.df.loc[self.df['consumo_kWh'].idxmin()],
+            "correlazione_consumo_temperatura_esterna": self.df['consumo_kWh'].corr(self.df['temperatura_esterna']),
+            "correlazione_consumo_temperatura_interna": self.df['consumo_kWh'].corr(self.df['temperatura_interna'])
+        }
+        
+        return patterns
