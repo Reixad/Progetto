@@ -25,12 +25,12 @@ class DataLoader:
             'consumo_medio': f"{np.round(self.df['consumo_kWh'].mean(), 4)} kWh",
             'picco_massimo_consumo': f"{self.df['picco_kW'].max()} kWh",
             'picco_minimo_consumo': f"{self.df['picco_kW'].min()} kWh",
-            'consumo_tot_f3': f"{np.round(self.df[((self.df['hour'] >= 0) & (self.df['hour'] < 7)) | (self.df['hour'] >= 23)]['consumo_kWh'].sum(), 4)} kWh",
-            'consumo_tot_f2': f"{np.round(self.df[((self.df['hour'] >= 7) & (self.df['hour'] < 8)) | ((self.df['hour'] >= 19) & (self.df['hour'] < 23))]['consumo_kWh'].sum(), 4)} kWh",
-            'consumo_tot_f1': f"{np.round(self.df[(self.df['hour'] >= 8) & (self.df['hour'] < 19)]['consumo_kWh'].sum(), 4)} kWh",
-            'consumo_medio_f3': f"{np.round(self.df[((self.df['hour'] >= 0) & (self.df['hour'] < 7)) | (self.df['hour'] >= 23)]['consumo_kWh'].mean(), 4)} kWh",
-            'consumo_medio_f2': f"{np.round(self.df[((self.df['hour'] >= 7) & (self.df['hour'] < 8)) | ((self.df['hour'] >= 19) & (self.df['hour'] < 23))]['consumo_kWh'].mean(), 4)} kWh",
-            'consumo_medio_f1': f"{np.round(self.df[(self.df['hour'] >= 8) & (self.df['hour'] < 19)]['consumo_kWh'].mean(), 4)} kWh"
+            'consumo_tot_f3': f"{np.round(self.df[self.df['time_slot'] == 'F3']['consumo_kWh'].sum(), 4)} kWh",
+            'consumo_tot_f2': f"{np.round(self.df[self.df['time_slot'] == 'F2']['consumo_kWh'].sum(), 4)} kWh",
+            'consumo_tot_f1': f"{np.round(self.df[self.df['time_slot'] == 'F1']['consumo_kWh'].sum(), 4)} kWh",
+            'consumo_medio_f3': f"{np.round(self.df[self.df['time_slot'] == 'F3']['consumo_kWh'].mean(), 4)} kWh",
+            'consumo_medio_f2': f"{np.round(self.df[self.df['time_slot'] == 'F2']['consumo_kWh'].mean(), 4)} kWh",
+            'consumo_medio_f1': f"{np.round(self.df[self.df['time_slot'] == 'F1']['consumo_kWh'].mean(), 4)} kWh"
         }
         
         return stats
