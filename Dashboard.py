@@ -2,6 +2,7 @@ import streamlit as st
 from charts.draw_metrics import DrawMetrics
 from charts.line_chart import LineChart
 from charts.histogram_chart import HistogramChart
+from charts.pie_chart import PieChart
 from utils.data_loader import DataLoader
 
 
@@ -12,6 +13,7 @@ df = dl.df.copy()
 dm = DrawMetrics()
 lch = LineChart(df)
 hc = HistogramChart(df)
+pc = PieChart(df)
 
 # --- METRICHE CONSUMI TOTALI ---
 
@@ -73,4 +75,11 @@ with col1:
 with col2:
     st.plotly_chart(ist2, width="stretch")
  
+# --- GRAFICO A TORTA ---
+
+st.subheader("Grafico a Torta dei Consumi per Fascia Oraria")
+
+piec = pc._tot_consumes_timeslot_pie_chart()
+
+st.plotly_chart(piec, width="stretch")
  
