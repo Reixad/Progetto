@@ -1,7 +1,9 @@
 import streamlit as st
 from charts.draw_metrics import DrawMetrics
 from charts.line_chart import LineChart
+from charts.histogram_chart import HistogramChart
 from utils.data_loader import DataLoader
+
 
 st.title("📊 Dashboard dei Consumi Energetici")
 
@@ -9,6 +11,7 @@ dl = DataLoader("database/consumi.csv")
 df = dl.df.copy()
 dm = DrawMetrics()
 lch = LineChart(df)
+hc = HistogramChart(df)
 
 # --- METRICHE CONSUMI TOTALI ---
 
@@ -51,4 +54,23 @@ st.subheader("Informazioni sulla Correlazione Consumi vs Temperature")
 dm._temp_metrics()
  
 st.divider()
+ 
+ # --- ISTOGRAMMA CONSUMI TOTALI ---
+ 
+st.subheader("Consumo Totale vs Medio Giornaliero per Fascia Oraria")
+ 
+ist1 = hc._tot_consumes_timeslot_histogram()
+ 
+# --- ISTOGRAMMA CONSUMI MEDI ---
+ 
+ist2 = hc._avg_consumes_timeslot_histogram()
+ 
+col1, col2 = st.columns(2)
+ 
+with col1:
+    st.plotly_chart(ist1, width="stretch")
+ 
+with col2:
+    st.plotly_chart(ist2, width="stretch")
+ 
  
