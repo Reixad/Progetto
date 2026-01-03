@@ -18,6 +18,16 @@ dm._energy_metrics()
 
 st.divider()
 
+# --- LINE CHART ---
+ 
+st.subheader("Andamento dei Consumi nel Tempo")
+ 
+lche = lch._energy_timeslot_chart()
+ 
+st.plotly_chart(lche, width="stretch")
+ 
+st.divider()
+
 # --- LINE CHART TEMPERATURE ---
  
 st.subheader("Andamento della Temperatura Interna vs Esterna nel Tempo")
