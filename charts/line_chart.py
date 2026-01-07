@@ -65,6 +65,7 @@ class LineChart:
                         y=segment["consumo_kWh"],
                         mode="lines",
                         line=dict(color=color_map[fascia_precedente], width=2),
+                        showlegend=False
                     )
                 )
  
