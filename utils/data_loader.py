@@ -21,7 +21,7 @@ class DataLoader:
     def basic_stats(self):
         """Calcola statistiche base dei consumi"""
         stats = {
-            'consumo_tot_giornaliero': f"{np.round(self.df['consumo_kWh'].sum(), 4)} kWh",
+            'consumo_tot': f"{np.round(self.df['consumo_kWh'].sum(), 4)} kWh",
             'consumo_medio': f"{np.round(self.df['consumo_kWh'].mean(), 4)} kWh",
             'picco_massimo_consumo': f"{self.df['picco_kW'].max()} kWh",
             'picco_minimo_consumo': f"{self.df['picco_kW'].min()} kWh",

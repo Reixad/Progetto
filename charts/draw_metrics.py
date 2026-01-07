@@ -4,7 +4,7 @@ from utils.data_loader import DataLoader
 class DrawMetrics:
     
     def __init__(self):
-        self.dl = DataLoader("data/consumi.csv")
+        self.dl = DataLoader("database/consumi.csv")
         self.df = self.dl.df.copy()
 
     def _energy_metrics(self):
