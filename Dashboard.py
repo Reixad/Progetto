@@ -18,9 +18,7 @@ pc = PieChart(df)
 # --- METRICHE CONSUMI TOTALI ---
 
 st.header("Metriche sui Consumi Energetici Totali")
-
-dm._energy_metrics()    
-
+dm._energy_sum_metrics()    
 st.divider()
 
 # --- LINE CHART ---
@@ -75,6 +73,12 @@ with col1:
 with col2:
     st.plotly_chart(ist2, width="stretch")
  
+# --- METRICHE CONSUMI MEDI ---
+
+st.subheader("Metriche sui Consumi Energetici Medi Orari")
+dm._energy_mean_metrics()
+st.divider()
+
 # --- GRAFICO A TORTA ---
 
 st.subheader("Grafico a Torta dei Consumi per Fascia Oraria")
