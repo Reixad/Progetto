@@ -1,9 +1,11 @@
-from unittest import loader
 import openai
-from utils.data_loader import DataLoader
-
+import os
 class LLMAnalyzer:
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str):   
+        proxy_vars = ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']
+        for var in proxy_vars:
+            os.environ.pop(var, None)
+        
         self.client = openai.OpenAI(api_key=api_key)
     
     def build_context(self, loader):

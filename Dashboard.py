@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/app')
+
 import streamlit as st
 from charts.draw_metrics import DrawMetrics
 from charts.line_chart import LineChart
@@ -5,6 +8,7 @@ from charts.histogram_chart import HistogramChart
 from charts.pie_chart import PieChart
 from utils.data_loader import DataLoader
 
+st.set_page_config(page_title="Dashboard Consumi", page_icon="📊")
 
 st.title("📊 Dashboard dei Consumi Energetici")
 

@@ -4,6 +4,9 @@ import numpy as np
 class DataLoader:
     def __init__(self, csv_path):
         """Inizializza l'analizzatore con i dati del CSV"""
+
+        if csv_path is None:
+            csv_path = "/app/database/consumi.csv"
         self.df = pd.read_csv(csv_path)
         self.df['timestamp'] = pd.to_datetime(self.df['timestamp'])
         self.df['hour'] = self.df['timestamp'].dt.hour
@@ -30,7 +33,7 @@ class DataLoader:
             'consumo_tot_f1': f"{np.round(self.df[self.df['time_slot'] == 'F1']['consumo_kWh'].sum(), 4)} kWh",
             'consumo_medio_f3': f"{np.round(self.df[self.df['time_slot'] == 'F3']['consumo_kWh'].mean(), 4)} kWh",
             'consumo_medio_f2': f"{np.round(self.df[self.df['time_slot'] == 'F2']['consumo_kWh'].mean(), 4)} kWh",
-            'consumo_medio_f1': f"{np.round(self.df[self.df['time_slot'] == 'F1']['consumo_kWh'].mean(), 4)} kWh"
+            'consumo_medio_f1': f"{np.round(self.df[self.df['time_slot'] == 'F1']['consumo_kWh'].mean(), 4)} kWh",
         }
         
         return stats
